@@ -4,12 +4,12 @@ function isNum(val){
 	return (!isNaN(val));
 }
 
-function isSpendValid(r, s, f, a) {
+function isSpendValid(r, s, f, a, ac, dc, oc) {
 	let numErr = 0;
-	let vals = [r, s, f, a];
-	let names = ['rSpend', 'sSpend', 'fSpend', 'aSpend'];
+	let vals = [r, s, f, a, ac, dc, oc];
+	let names = ['rSpend', 'sSpend', 'fSpend', 'aSpend', 'aCredit', 'dCredit', 'oCredit'];
 
-	for (let i = 0; i < 4; i++) { 
+	for (let i = 0; i < vals.length; i++) { 
     	if (isNum(vals[i]) && (vals[i] >= 0)){
 			continue;
 		} else { 
@@ -18,7 +18,7 @@ function isSpendValid(r, s, f, a) {
 		}
 	}
 
-	if (numErr > 0) {
+	if (numErr > 0) { 
 		return false;
 	} else {
 		return true;
@@ -26,18 +26,22 @@ function isSpendValid(r, s, f, a) {
 }
 
 
-function myFunction() {
+function mainFunction() {
 	let rSpend = document.getElementById("rSpend").value;
 	let sSpend = document.getElementById("sSpend").value;
 	let fSpend = document.getElementById("fSpend").value;
 	let aSpend = document.getElementById("aSpend").value;
 
-	isSpendValid(rSpend, sSpend, fSpend, aSpend);
+	let aCredit = document.getElementById("aCredit").value;
+	let dCredit = document.getElementById("dCredit").value;
+	let oCredit = document.getElementById("oCredit").value;
 
-
-	/*if (isSpendValid(rSpend, sSpend, fSpend, aSpend) == false){
-		console.log("Needs Fixing");
+	if (isSpendValid(rSpend, sSpend, fSpend, aSpend, aCredit, dCredit, oCredit) == false){
+		console.log("Needs Fixing"); 
 		return; 
-	} */
+	} 
+
+
+
 }
 
