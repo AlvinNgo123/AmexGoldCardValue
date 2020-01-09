@@ -45,7 +45,8 @@ function mainFunction() {
 	let dCredit = document.getElementById("dCredit").value;
 	let oCredit = document.getElementById("oCredit").value;
 
-	let welcomeChecks = [document.getElementById("yes").checked, document.getElementById("no").checked];
+	let welcomeChecks = [document.getElementById("yes").checked, 
+						 document.getElementById("no").checked];
 	let welcomeVals = [35000, 0]; 
 	let welcome = checkRadioChoice(welcomeChecks, welcomeVals);
 	/*console.log(welcome);
@@ -54,8 +55,18 @@ function mainFunction() {
 	}*/
 
 
-	let redemption = 0;
-
+	let redemptionChecks = [document.getElementById("statement").checked,
+							document.getElementById("amazon").checked,
+							document.getElementById("gift").checked,
+							document.getElementById("schwab").checked,
+							document.getElementById("transfer").checked
+							];
+    let redemptionVals = [0.006, 0.007, 0.01, 0.0125, 0.02];
+    let redemption = checkRadioChoice(redemptionChecks, redemptionVals);
+    console.log(redemption);
+	if (redemption == -1){
+		console.log("Please check one of the choices");
+	}
 
 
 	/*if (isSpendValid(rSpend, sSpend, fSpend, aSpend, aCredit, dCredit, oCredit) == false){
