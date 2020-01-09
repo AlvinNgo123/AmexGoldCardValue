@@ -10,7 +10,7 @@ function isSpendValid(r, s, f, a, ac, dc, oc) {
 	let names = ['rSpend', 'sSpend', 'fSpend', 'aSpend', 'aCredit', 'dCredit', 'oCredit'];
 
 	for (let i = 0; i < vals.length; i++) { 
-    	if (isNum(vals[i]) && (vals[i] >= 0)){
+    	if ((vals[i] != "") && isNum(vals[i]) && (vals[i] >= 0)){
 			continue;
 		} else { 
 			console.log(names[i] + ' is not valid.');
@@ -49,12 +49,7 @@ function mainFunction() {
 						 document.getElementById("no").checked];
 	let welcomeVals = [35000, 0]; 
 	let welcome = checkRadioChoice(welcomeChecks, welcomeVals);
-	/*console.log(welcome);
-	if (welcome == -1){
-		console.log("Please check one of the choices");
-	}*/
-
-
+	
 	let redemptionChecks = [document.getElementById("statement").checked,
 							document.getElementById("amazon").checked,
 							document.getElementById("gift").checked,
@@ -63,17 +58,25 @@ function mainFunction() {
 							];
     let redemptionVals = [0.006, 0.007, 0.01, 0.0125, 0.02];
     let redemption = checkRadioChoice(redemptionChecks, redemptionVals);
-    console.log(redemption);
+
+    //This is to check that all user inputs are valid and form is completely filled out.
+	errorFree = true;
+	if (isSpendValid(rSpend, sSpend, fSpend, aSpend, aCredit, dCredit, oCredit) == false){
+		errorFree = false; 
+	}
+	if (welcome == -1){
+		console.log("Please check yes or no for welcome offer");
+		errorFree = false;
+	}
 	if (redemption == -1){
-		console.log("Please check one of the choices");
+		console.log("Please check one of the redemption choices");
+		errorFree = false;
+	}
+	if (errorFree == false){
+		return;
 	}
 
-
-	/*if (isSpendValid(rSpend, sSpend, fSpend, aSpend, aCredit, dCredit, oCredit) == false){
-		console.log("Needs Fixing"); 
-		return; 
-	}*/
-
+	console.log("successful fillout") 
 
 
 }
