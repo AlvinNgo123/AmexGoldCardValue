@@ -25,6 +25,15 @@ function isSpendValid(r, s, f, a, ac, dc, oc) {
 	}
 }
 
+function checkRadioChoice(checkedList, valList){
+	for (let i = 0; i < checkedList.length; i++){
+		if (checkedList[i]){
+			return valList[i];
+		}
+	}
+	return -1; 
+}
+
 
 function mainFunction() {
 	let rSpend = document.getElementById("rSpend").value;
@@ -36,10 +45,23 @@ function mainFunction() {
 	let dCredit = document.getElementById("dCredit").value;
 	let oCredit = document.getElementById("oCredit").value;
 
-	if (isSpendValid(rSpend, sSpend, fSpend, aSpend, aCredit, dCredit, oCredit) == false){
+	let welcomeChecks = [document.getElementById("yes").checked, document.getElementById("no").checked];
+	let welcomeVals = [35000, 0]; 
+	let welcome = checkRadioChoice(welcomeChecks, welcomeVals);
+	/*console.log(welcome);
+	if (welcome == -1){
+		console.log("Please check one of the choices");
+	}*/
+
+
+	let redemption = 0;
+
+
+
+	/*if (isSpendValid(rSpend, sSpend, fSpend, aSpend, aCredit, dCredit, oCredit) == false){
 		console.log("Needs Fixing"); 
 		return; 
-	} 
+	}*/
 
 
 
