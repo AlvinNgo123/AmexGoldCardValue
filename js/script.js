@@ -80,14 +80,14 @@ function mainFunction() {
 	let test = welcome + (rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1);
 	let test1 = test * redemption;
 	let test2 = test1 + aCredit + dCredit + oCredit;
-	let beforeAnnualFee = ((welcome + (rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1)) * redemption) + ((aCredit*1) + (dCredit*1) + (oCredit*1));
+	let beforeAnnualFee = ((welcome + (rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1)) * redemption) + ((aCredit*2) + (dCredit*1) + (oCredit*1));
 	let totalValYear1 = beforeAnnualFee - 250;
-	let totalValYear2 = beforeAnnualFee - ((welcome*redemption) + 250);
-	console.log(aCredit);
+	let totalValYear2 = beforeAnnualFee - ((welcome*redemption) + 250) - aCredit;
+	/*console.log(aCredit);
 	console.log(dCredit);
 	console.log(oCredit);
 	console.log("temp: " + test1);
-	console.log("after: " + (test1 + aCredit));
+	console.log("after: " + (test1 + aCredit));*/
 	console.log(totalValYear1);
 	console.log(totalValYear2); 
 }
