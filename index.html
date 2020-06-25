@@ -12,12 +12,18 @@
 <p>Are you able to get the full welcome offer of 35,000 MR points (by spending $4000)?</p>
 <input type="radio" name = "welcome" id = "yes" value=35000>YES<br>
 <input type="radio" name = "welcome" id = "no" value=0>NO<br>
+<p id="welcomeOut"></p>
+
 
 <p>Please input the approximate amount you spend (dollars) in each of the categories.</p>
 <div>Restaurants (4X points) </br> $<input type="text" id="rSpend"></div>
+<p id="rOut"></p>
 <div>U.S. Supermarkets (4X points) </br> $<input type="text" id="sSpend"></div>
+<p id="sOut"></p>
 <div>Flights booked directly or through amex portal (3X points) </br> $<input type="text" id="fSpend"></div>
+<p id="fOut"></p>
 <div>All other spending (1X points) </br> $<input type="text" id="aSpend"></div>
+<p id="a_spendOut"></p>
 <button onclick="mainFunction()">Enter</button>
 
 
@@ -26,12 +32,16 @@
 <input type="radio" name = "redemption" id = "amazon">Amazon = 0.7 CPP<br>
 <input type="radio" name = "redemption" id = "gift">Gift cards/Uber/Travel = 1 CPP<br>
 <input type="radio" name = "redemption" id = "schwab">Schwab Platinum = 1.25 CPP<br> 
-<input type="radio" name = "redemption" id = "transfer">Transfer partners = 2 CPP<br> 
+<input type="radio" name = "redemption" id = "transfer">Transfer partners = 2 CPP<br>
+<p id="redeemOut"></p>
+<p id="redeemOut2"></p> 
 
 <p>Please input how much you value the credits/benefits that American Express provides you annually?</p>
 <div>$100 Airline Credit </br> $<input type="text" id="aCredit"></div>
 <div>$120 Dining Credit </br> $<input type="text" id="dCredit"></div> 
 <div>Amex Benefits (Shoprunner, The Hotel Collection, Pre-sale tickets, etc) </br> $<input type="text" id="oCredit"></div>
+<p id="creditsOut"></p>
+<p id="creditsOut2"></p>
 
 
 
