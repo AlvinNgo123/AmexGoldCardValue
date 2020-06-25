@@ -14,7 +14,6 @@ function checkRadioChoice(checkedList, valList){
 }
 
 
-
 function validateWelcomeInput(welcome){
 	if (welcome == -1){
 		printInvalid("welcomeOut", "");
@@ -44,7 +43,22 @@ function validateSpendInputs(rSpend, sSpend, fSpend, aSpend){
 		} 
 	}
 
+	if (validity == true){
+		totalSpend = parseFloat(rSpend) + parseFloat(sSpend) + parseFloat(fSpend) + parseFloat(aSpend)
+		printPointsOutput("a_spendOut", "Spending Categories", totalSpend)
+	}
+
 	return validity;
+}
+
+
+function validateRedemptionInput(redemption){
+	if (welcome == -1){
+		printInvalid("redeemOut", "");
+		return false;
+	} else {
+		return true;
+	}
 }
 
 
@@ -54,14 +68,24 @@ function printInvalid(id, name){
 		case "welcomeOut":
 			document.getElementById(id).innerHTML = "Please check yes or no for welcome offer.";
 			break;
-		case "spendOut":
+		case "rOut":
+			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
+			break;
+		case "sOut":
+			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
+			break;
+		case "fOut":
+			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
+			break;
+		case "a_spendOut":
 			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
 			break;
 		case "creditsOut":
 			document.getElementById(id).innerHTML = name + " credit amount is not valid. Please pick a number 0 or greater.";
 			break;
 		case "redeemOut":
-			document.getElementById(id).innerHTML = name + "Please check one of the redemption choices."
+			document.getElementById(id).innerHTML = "Please check one of the redemption choices.";
+			break;
 	}
 }
 	
@@ -72,7 +96,7 @@ function printPointsOutput(id, name, amt){
 		case "welcomeOut":
 			document.getElementById(id).innerHTML = "Points earned from " + name +": " + amt;
 			break;
-		case "spendOut":
+		case "a_spendOut":
 			document.getElementById(id).innerHTML = "Points earned from " + name +": " + amt;
 			break;
 		case "creditsOut":
@@ -114,40 +138,21 @@ function mainFunction() {
 	
 
 	let validWelcome = validateWelcomeInput(welcome);
-	let validSpend = validateSpendInputs(rSpend, sSpend, fSpend, aSpend)
+	let validSpend = validateSpendInputs(rSpend, sSpend, fSpend, aSpend);
+	let validRedemption = validateRedemptionInput(redemption);
+	let validCredit = validateCreditInputs(redemption);
 
-	checkAllUserInput(welcome, rSpend, sSpend, fSpend, aSpend, redemption, aCredit, dCredit, oCredit)
+
+	if (validWelcome && validSpend && validRedemption && validCredit){
+
+	}
 	
     /*
-    //This is to check that all user inputs are valid and form is completely filled out.
-	let errorFree = true;
-	
-	if (welcome == -1){
-		printInvalid("welcomeOut", "");
-		errorFree = false;
-	} else {
-		printPointsOutput("welcomeOut", "Welcome Offer", welcome)
-	}
-	if (isSpendValid(rSpend, sSpend, fSpend, aSpend, aCredit, dCredit, oCredit) == false){
-		errorFree = false; 
-	} else {
-		printPointsOutput("spendOut", "Spending", (rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1));
-		printPointsOutput("creditsOut", (aCredit) );
-	}
-	
-	if (redemption == -1){
-		console.log("Please check one of the redemption choices");
-		errorFree = false;
-	}
-	if (errorFree == false){
-		return;
-	}
-
 	console.log("successful fillout"); 
 	let beforeAnnualFee = ((welcome + (rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1)) * redemption) + ((aCredit*2) + (dCredit*1) + (oCredit*1));
 	let totalValYear1 = beforeAnnualFee - 250;
 	let totalValYear2 = beforeAnnualFee - ((welcome*redemption) + 250) - aCredit;
 	console.log(totalValYear1);
-	console.log(totalValYear2); 
+	console.log(totalValYear2); */
 }
 
