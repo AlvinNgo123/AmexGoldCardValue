@@ -9,7 +9,7 @@ With the quick rise in popularity of the American Express Gold Card due to its h
 ## Requirements/Installation to Edit 
 1. **No Additional Install Requirements**
 
-2. **Clone repository:**
+2. **Clone repository**
 
   ```bash
   git clone https://github.com/AlvinNgo123/AmexGoldCardValue.git
