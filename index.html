@@ -3,47 +3,65 @@
 
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
 </head>
 
 <body>
 
+<div id="wrapper">
 <h1>American Express Gold Card: Is it worth it for YOUR spending habits?</h1>
 
-<p>Are you able to get the full welcome offer of 35,000 MR points (by spending $4000)?</p>
+<p><strong>Are you able to get the full welcome offer of 35,000 MR points (by spending $4000)?</strong></p>
 <input type="radio" name = "welcome" id = "yes" value=35000>YES<br>
 <input type="radio" name = "welcome" id = "no" value=0>NO<br>
-<p id="welcomeOut"></p>
+<div id="wOut"></div>
+<br> 
+<p id="welcomeOut" class="output">Points earned from welcome bonus:   </p>
 
 
-<p>Please input the approximate amount you spend (dollars) in each of the categories.</p>
+<p><strong>Please input the approximate amount you spend (dollars) in each of the categories.</strong></p>
 <div>Restaurants (4X points) </br> $<input type="text" id="rSpend"></div>
-<p id="rOut"></p>
+<div id="rOut"></div>
 <div>U.S. Supermarkets (4X points) </br> $<input type="text" id="sSpend"></div>
-<p id="sOut"></p>
+<div id="sOut"></div>
 <div>Flights booked directly or through amex portal (3X points) </br> $<input type="text" id="fSpend"></div>
-<p id="fOut"></p>
+<div id="fOut"></div>
 <div>All other spending (1X points) </br> $<input type="text" id="aSpend"></div>
-<p id="a_spendOut"></p>
-<button onclick="mainFunction()">Enter</button>
+<div id="aOut"></div>
+<br> 
+<p id="spendOut" class="output">Points earned from welcome bonus:   </p> 
 
-
-<p>Please input how much you value the credits/benefits that American Express provides you annually?</p>
+<p><strong>Please input how much you value the credits/benefits that American Express provides you annually.</strong></p>
 <div>$100 Airline Credit </br> $<input type="text" id="aCredit"></div>
+<div id="aCredsOut"></div>
 <div>$120 Dining Credit </br> $<input type="text" id="dCredit"></div> 
+<div id="dCredsOut"></div>
 <div>Amex Benefits (Shoprunner, The Hotel Collection, Pre-sale tickets, etc) </br> $<input type="text" id="oCredit"></div>
-<p id="creditsOut"></p>
-<p id="creditsOut2"></p>
+<div id="oCredsOut"></div>
+<br> 
+<p id="creditsOut" class="output">Value of credits in year 1 (w/ double dipping in Airline Credits):   </p>
+<p id="creditsOut2" class="output">Value of credits in year 2 (w/ no Airline Credits):   </p>
 
-<p>How do you plan to redeem your MR points (CPP = Cents Per Point)?</p>
+
+<p><strong>How do you plan to redeem your MR points (CPP = Cents Per Point)?</strong></p>
 <input type="radio" name = "redemption" id = "statement">Statement credit = 0.6 CPP<br> 
 <input type="radio" name = "redemption" id = "amazon">Amazon = 0.7 CPP<br>
 <input type="radio" name = "redemption" id = "gift">Gift cards/Uber/Travel = 1 CPP<br>
 <input type="radio" name = "redemption" id = "schwab">Schwab Platinum = 1.25 CPP<br> 
 <input type="radio" name = "redemption" id = "transfer">Transfer partners = 2 CPP<br>
-<p id="redeemOut"></p>
-<p id="redeemOut2"></p> 
+<div id="redOut"></div>
+<br> 
+<p id="redeemOut" class="output">Expected Value in Year 1:   </p>
+<p id="redeemOut2" class="output">Expected Value in Year 2:   </p>
+<br>
+<div id="invalidUser"></div>
+<div style="text-align:center;">
+	<p></p>
+    <button onclick="mainFunction()">Enter</button>
+</div> 
 
 
+</div>
 </body>
 
 <script src="js/script.js"></script>

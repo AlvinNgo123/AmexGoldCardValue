@@ -1,5 +1,4 @@
 function isNum(val){
-	console.log(!isNaN(val));
 	return (!isNaN(val));
 }
 
@@ -16,10 +15,11 @@ function checkRadioChoice(checkedList, valList){
 
 function validateWelcomeInput(welcome){
 	if (welcome == -1){
-		printInvalid("welcomeOut", "");
+		printInvalid("wOut", "");
 		return false;
 	} else {
 		printPointsOutput("welcomeOut", "Welcome Offer", welcome);
+		removeInvalid("wOut", "");
 		return true;
 	}
 }
@@ -29,7 +29,7 @@ function validateSpendInputs(rSpend, sSpend, fSpend, aSpend){
 	let validity = true;
 	let vals = [rSpend, sSpend, fSpend, aSpend];
 	let names = ['Restaurants', 'U.S. Supermarkets', 'Flights', 'All other'];
-	let ids = ['rOut', 'sOut', 'fOut', 'a_spendOut']
+	let ids = ['rOut', 'sOut', 'fOut', 'aOut'];
 
 
 	for (let i = 0; i < vals.length; i++) {
@@ -40,12 +40,45 @@ function validateSpendInputs(rSpend, sSpend, fSpend, aSpend){
 		} else if (parseFloat(vals[i]) < 0){
 			printInvalid(ids[i], names[i]); 
 			validity = false;
-		} 
+		} else {
+			removeInvalid(ids[i]);
+		}
 	}
 
 	if (validity == true){
 		totalSpend = parseFloat(rSpend) + parseFloat(sSpend) + parseFloat(fSpend) + parseFloat(aSpend)
-		printPointsOutput("a_spendOut", "Spending Categories", totalSpend)
+		printPointsOutput("spendOut", "Spending Categories", totalSpend)
+	}
+
+	return validity;
+}
+
+
+function validateCreditInputs(aCredit, dCredit, oCredit){
+	let validity = true;
+	let vals = [aCredit, dCredit, oCredit];
+	let names = ['Airline', 'Dining', 'Other Benefits'];
+	let ids = ['aCredsOut', 'dCredsOut', 'oCredsOut'];
+
+
+	for (let i = 0; i < vals.length; i++) {
+
+		if ((isNum(vals[i]) == false) || (vals[i] == "")){
+			printInvalid(ids[i], names[i]); 
+			validity = false;	 
+		} else if (parseFloat(vals[i]) < 0){
+			printInvalid(ids[i], names[i]); 
+			validity = false;
+		} else {
+			removeInvalid(ids[i]);
+		}
+	}
+
+	if (validity == true){
+		totalCredits1 = (parseFloat(aCredit) * 2) + parseFloat(dCredit) + parseFloat(oCredit);
+		totalCredits2 = parseFloat(aCredit) + parseFloat(dCredit) + parseFloat(oCredit);
+		printPointsOutput("creditsOut", "", totalCredits1);
+		printPointsOutput("creditsOut2", "", totalCredits2);
 	}
 
 	return validity;
@@ -53,57 +86,76 @@ function validateSpendInputs(rSpend, sSpend, fSpend, aSpend){
 
 
 function validateRedemptionInput(redemption){
-	if (welcome == -1){
-		printInvalid("redeemOut", "");
+	if (redemption == -1){
+		printInvalid("redOut", "");
 		return false;
 	} else {
-		return true;
+		removeInvalid("redOut");
+		return true; 
 	}
 }
 
+function removeInvalid(id){
+	document.getElementById(id).innerHTML = " ";
+}
 
 function printInvalid(id, name){
-	document.getElementById(id).style.color = 'red';
+	document.getElementById(id).style.color = "#DC143C";
 	switch (id){
-		case "welcomeOut":
-			document.getElementById(id).innerHTML = "Please check yes or no for welcome offer.";
+		case "wOut":
+			document.getElementById(id).innerHTML = "*** Please check yes or no for welcome offer.";
 			break;
 		case "rOut":
-			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
+			document.getElementById(id).innerHTML = "*** " + name + " spend amount is not valid. Please pick a number 0 or greater.";
 			break;
 		case "sOut":
-			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
+			document.getElementById(id).innerHTML = "*** " + name + " spend amount is not valid. Please pick a number 0 or greater.";
 			break;
 		case "fOut":
-			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
+			document.getElementById(id).innerHTML = "*** " + name + " spend amount is not valid. Please pick a number 0 or greater.";
 			break;
-		case "a_spendOut":
-			document.getElementById(id).innerHTML = name + " spend amount is not valid. Please pick a number 0 or greater.";
+		case "aOut":
+			document.getElementById(id).innerHTML = "*** " + name + " spend amount is not valid. Please pick a number 0 or greater.";
 			break;
-		case "creditsOut":
-			document.getElementById(id).innerHTML = name + " credit amount is not valid. Please pick a number 0 or greater.";
+		case "aCredsOut":
+			document.getElementById(id).innerHTML = "*** " + name + " credit amount is not valid. Please pick a number 0 or greater.";
 			break;
-		case "redeemOut":
-			document.getElementById(id).innerHTML = "Please check one of the redemption choices.";
+		case "dCredsOut":
+			document.getElementById(id).innerHTML = "*** " + name + " credit amount is not valid. Please pick a number 0 or greater.";
+			break;
+		case "oCredsOut":
+			document.getElementById(id).innerHTML = "*** " + name + " credit amount is not valid. Please pick a number 0 or greater.";
+			break;
+		case "redOut":
+			document.getElementById(id).innerHTML = "*** Please check one of the redemption choices.";
+			break;
+		case "invalidUser":
+			document.getElementById(id).innerHTML = "*** Some inputs are invalid. Please go back and fix the fields marked in red.";
 			break;
 	}
 }
 	
 
 function printPointsOutput(id, name, amt){
-	document.getElementById(id).style.color = 'blue';
+	document.getElementById(id).style.color = "#4682B4";
 	switch (id){
 		case "welcomeOut":
 			document.getElementById(id).innerHTML = "Points earned from " + name +": " + amt;
 			break;
-		case "a_spendOut":
+		case "spendOut":
 			document.getElementById(id).innerHTML = "Points earned from " + name +": " + amt;
 			break;
 		case "creditsOut":
-			document.getElementById(id).innerHTML = "Value of credits in year 1 (w/ double dipping): " + amt;
+			document.getElementById(id).innerHTML = "Value of credits in year 1 (w/ double dipping in Airline Credits): $" + amt;
+			break;
+		case "creditsOut2":
+			document.getElementById(id).innerHTML = "Value of credits in year 2 (w/ no Airline Credits): $" + amt;
 			break;
 		case "redeemOut":
-			document.getElementById(id).innerHTML = "Value of Points: (Year 1 = Bonus + Spend)" + amt;
+			document.getElementById(id).innerHTML = "Expected Value in Year 1: $" + amt;
+			break;
+		case "redeemOut2":
+			document.getElementById(id).innerHTML = "Expected Value in Year 2: $" + amt;
 			break;
 	}
 }
@@ -139,20 +191,30 @@ function mainFunction() {
 
 	let validWelcome = validateWelcomeInput(welcome);
 	let validSpend = validateSpendInputs(rSpend, sSpend, fSpend, aSpend);
+	let validCredit = validateCreditInputs(aCredit, dCredit, oCredit);
 	let validRedemption = validateRedemptionInput(redemption);
-	let validCredit = validateCreditInputs(redemption);
 
 
 	if (validWelcome && validSpend && validRedemption && validCredit){
+		console.log("All spend is valid");
+		//Sums up spending categories and welcome bonuses (adjusted with redemption) and credits (airline credit double dipping accounted for)
+		let beforeAnnualFee1 = ((welcome + (rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1)) * redemption) + ((aCredit*2) + (dCredit*1) + (oCredit*1));
+		//Subtracts the annual fee that must be paid to get total value in first year
+		let totalValYear1 = beforeAnnualFee1 - 250;
 
+		//Second year of the card, we don't have a signup bonus and no airline credit since we had chance to double dip.
+		let beforeAnnualFee2 = (((rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1)) * redemption) + ((aCredit*1) + (dCredit*1) + (oCredit*1));
+		let totalValYear2 = beforeAnnualFee2 - 250;
+		
+
+		totalValYear1 = totalValYear1.toFixed(2);
+		totalValYear2 = totalValYear2.toFixed(2);
+		printPointsOutput("redeemOut", "", totalValYear1);
+		printPointsOutput("redeemOut2", "", totalValYear2);
+		removeInvalid("invalidUser");
+	} else {
+		printInvalid("invalidUser", "");
 	}
 	
-    /*
-	console.log("successful fillout"); 
-	let beforeAnnualFee = ((welcome + (rSpend * 4) + (sSpend * 4) + (fSpend * 3) + (aSpend * 1)) * redemption) + ((aCredit*2) + (dCredit*1) + (oCredit*1));
-	let totalValYear1 = beforeAnnualFee - 250;
-	let totalValYear2 = beforeAnnualFee - ((welcome*redemption) + 250) - aCredit;
-	console.log(totalValYear1);
-	console.log(totalValYear2); */
 }
 
